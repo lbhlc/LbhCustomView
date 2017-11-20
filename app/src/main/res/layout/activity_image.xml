@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.administrator.CATransition.ui_trasition.ImageActivity"
+    android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/activity_img_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        app:titleTextColor="@android:color/white"/>
+
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:columnCount="2"
+        app:rowCount="3">
+
+        <com.example.administrator.CATransition.CustomImage
+            android:id="@+id/imageView1"
+            style="@style/ImageViewStyle"
+            android:src="@drawable/anim1"/>
+
+        <com.example.administrator.CATransition.CustomImage
+            style="@style/ImageViewStyle"
+            android:src="@drawable/anim2"/>
+
+        <com.example.administrator.CATransition.CustomImage
+            style="@style/ImageViewStyle"
+            android:src="@drawable/anim3"/>
+
+        <com.example.administrator.CATransition.CustomImage
+            style="@style/ImageViewStyle"
+            android:src="@drawable/anim4"/>
+
+        <com.example.administrator.CATransition.CustomImage
+            style="@style/ImageViewStyle"
+            android:src="@drawable/anim5"/>
+
+        <com.example.administrator.CATransition.CustomImage
+            style="@style/ImageViewStyle"
+            android:src="@drawable/anim6"/>
+    </android.support.v7.widget.GridLayout>
+
+</LinearLayout>

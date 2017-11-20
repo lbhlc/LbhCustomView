@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.administrator.CATransition.TransitionActivity;
 import com.example.administrator.lbhcustomview.auditprogress.AuditProgressActivity;
 import com.example.administrator.lbhcustomview.bomb.BombActivity;
 import com.example.administrator.lbhcustomview.dragviewactivity.DragMainActivity;
@@ -34,6 +35,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 可拖拽图片页面
      */
     private Button mDragviewActivity;
+    /**
+     * 可拖转场动画页面
+     */
+    private Button mTransitionActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mSpeedControlActivity.setOnClickListener(this);
         mDragviewActivity = (Button) findViewById(R.id.dragview_activity);
         mDragviewActivity.setOnClickListener(this);
+        mTransitionActivity = (Button) findViewById(R.id.transition_activity);
+        mTransitionActivity.setOnClickListener(this);
     }
 
     @Override
@@ -77,6 +84,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.dragview_activity:
                 startActivity(new Intent(this, DragMainActivity.class));
+                break;
+            case R.id.transition_activity:
+                startActivity(new Intent(this, TransitionActivity.class));
                 break;
         }
     }

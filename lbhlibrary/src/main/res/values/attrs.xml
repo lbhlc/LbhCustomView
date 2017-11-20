@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 申请进度的自定义view-->
+    <declare-styleable name="AuditProgressView">
+        <!--当前步骤是否完成 -->
+        <attr name="apv_isCurrentComplete" format="boolean" />
+        <!--下一个步骤是否完成 -->
+        <attr name="apv_isNextComplete" format="boolean" />
+        <!--是不是第一个步骤 -->
+        <attr name="apv_isFirstStep" format="boolean" />
+        <!--是不是最后一个步骤 -->
+        <attr name="apv_isLastStep" format="boolean" />
+        <!--共有几个步骤 -->
+        <attr name="apv_stepCount" format="integer" />
+        <!--步骤提示 -->
+        <attr name="apv_text" format="string|reference" />
+    </declare-styleable>
+    <declare-styleable name="DropIndicator">
+        <attr name="color1" format="color"></attr>
+        <attr name="color2" format="color"></attr>
+        <attr name="color3" format="color"></attr>
+        <attr name="color4" format="color"></attr>
+        <attr name="click_color" format="color"></attr>
+        <attr name="circle_color" format="color"></attr>
+        <attr name="radius" format="dimension"></attr>
+        <attr name="scale" format="float"></attr>
+        <attr name="duration" format="integer"></attr>
+    </declare-styleable>
+
+</resources>

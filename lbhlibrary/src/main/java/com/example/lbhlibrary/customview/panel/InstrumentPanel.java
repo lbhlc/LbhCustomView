@@ -9,6 +9,9 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * @author libohan
  *         邮箱:76681287@qq.com
@@ -16,7 +19,7 @@ import android.view.View;
  *         自定义仪表盘
  */
 
-public class InstrumentPanel extends View {
+public class InstrumentPanel extends View implements PanelValue{
     /**
      * 自定义的长度和宽度
      */
@@ -123,6 +126,13 @@ public class InstrumentPanel extends View {
         for (int i=0;i<100;i++) {
             if (hasDraw<=targetAngle&&targetAngle!=0)
             {
+                /**
+                 * 设置渐变色
+                 */
+                float prencert=hasDraw/sweepangle;
+                int red=255-(int)(prencert*255);
+                int green=(int)(prencert*255);
+                lineTargetPaint.setARGB(255,red,green,0);
                 canvas.drawLine(0,radius,0,radius-40,lineTargetPaint);
             }
             if (hasDraw%60==0&&hasDraw!=0)
@@ -138,5 +148,51 @@ public class InstrumentPanel extends View {
         }
         //和上面的save方法必须成对出现
         canvas.restore();
+    }
+   //判断是否在运动
+    private boolean isRunning;
+    //判断是回退的状态还是前进状态
+    private int state = 1;
+    private void changeAngle(final float trueAngle) {
+        if (isRunning){//如果在动直接返回
+            return;
+        }
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                switch (state) {
+                    case 1://后退状态
+                        isRunning=true;
+                        targetAngle -= 3;
+                        if (targetAngle <= 0) {//如果回退到0
+                            targetAngle = 0;
+                            //改为前进状态
+                            state = 2;
+                        }
+                        break;
+                    case 2://前进状态
+                        targetAngle += 3;
+                        if (targetAngle >= trueAngle) {//如果增加到指定角度
+                            targetAngle = trueAngle;
+                            //改为后退状态
+                            state = 1;
+                            isRunning=false;
+                            //结束本次运动
+                            timer.cancel();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                //重新绘制（子线程中使用的方法）
+                postInvalidate();
+            }
+        }, 500, 30);
+    }
+
+    @Override
+    public void getValue(float value) {
+        changeAngle(value);
     }
 }

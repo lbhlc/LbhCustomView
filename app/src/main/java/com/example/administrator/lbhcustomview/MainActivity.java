@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.administrator.CATransition.TransitionActivity;
+import com.example.administrator.lbhcustomview.InstrumentPanel.InstrumentPanelActivity;
 import com.example.administrator.lbhcustomview.auditprogress.AuditProgressActivity;
 import com.example.administrator.lbhcustomview.bomb.BombActivity;
 import com.example.administrator.lbhcustomview.dragviewactivity.DragMainActivity;
@@ -39,6 +40,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 可拖转场动画页面
      */
     private Button mTransitionActivity;
+    /**
+     * 跳转到自定义仪表盘
+     */
+    private Button mInstrumentpanelActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mDragviewActivity.setOnClickListener(this);
         mTransitionActivity = (Button) findViewById(R.id.transition_activity);
         mTransitionActivity.setOnClickListener(this);
+        mInstrumentpanelActivity = (Button) findViewById(R.id.instrumentpanel_activity);
+        mInstrumentpanelActivity.setOnClickListener(this);
     }
 
     @Override
@@ -87,6 +94,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.transition_activity:
                 startActivity(new Intent(this, TransitionActivity.class));
+                break;
+            case R.id.instrumentpanel_activity:
+                startActivity(new Intent(this, InstrumentPanelActivity.class));
                 break;
         }
     }

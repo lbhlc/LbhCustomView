@@ -43,6 +43,12 @@
         android:id="@+id/transition_activity"
         android:text="可拖转场动画页面"
         />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/instrumentpanel_activity"
+        android:text="跳转到自定义仪表盘"
+        />
 
 </LinearLayout>
 

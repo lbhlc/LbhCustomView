@@ -22,17 +22,16 @@
         <activity android:name=".speed.SpeedContralActivity" />
         <activity android:name=".dragviewactivity.DragMainActivity" />
         <activity android:name=".dragviewactivity.DragPhotoActivity" />
-        <activity android:name="com.example.administrator.CATransition.TransitionActivity"
-            />
-        <activity android:name="com.example.administrator.CATransition.ui_trasition.ImageActivity"
-            android:theme="@style/AppTheme.Main"/>
-        <activity android:name="com.example.administrator.CATransition.ui_trasition.DetailActivity"
-            android:theme="@style/AppTheme.Detail"/>
-        <activity android:name="com.example.administrator.CATransition.manual_transition.AnimeActivity"
-            />
-        <activity android:name="com.example.administrator.CATransition.manual_transition.AnimeDetailActivity"
-
-            ></activity>
+        <activity android:name="com.example.administrator.CATransition.TransitionActivity" />
+        <activity
+            android:name="com.example.administrator.CATransition.ui_trasition.ImageActivity"
+            android:theme="@style/AppTheme.Main" />
+        <activity
+            android:name="com.example.administrator.CATransition.ui_trasition.DetailActivity"
+            android:theme="@style/AppTheme.Detail" />
+        <activity android:name="com.example.administrator.CATransition.manual_transition.AnimeActivity" />
+        <activity android:name="com.example.administrator.CATransition.manual_transition.AnimeDetailActivity" />
+        <activity android:name=".InstrumentPanel.InstrumentPanelActivity"></activity>
     </application>
 
 </manifest>

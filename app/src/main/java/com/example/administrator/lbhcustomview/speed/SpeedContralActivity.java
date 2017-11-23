@@ -9,12 +9,16 @@ import android.widget.Button;
 import com.example.administrator.lbhcustomview.R;
 import com.example.lbhlibrary.customview.speedcontroal.SpeedControlView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SpeedContralActivity extends AppCompatActivity {
 
     private SpeedControlView speedControlView;
     private Button speedUp; //油门
     private Button speedDown;//刹车
     private Button shutDown; //手刹
+    private List list=new ArrayList();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,24 +29,38 @@ public class SpeedContralActivity extends AppCompatActivity {
         speedUp = (Button) findViewById(R.id.speed_up);
         speedDown = (Button) findViewById(R.id.speed_down);
         shutDown = (Button) findViewById(R.id.shut_down);
+        for (int i=0;i<6;i++)
+        {
+            list.add(i*30);
+        }
 
         //设置监听
-        speedUp.setOnTouchListener(new View.OnTouchListener() {
+//        speedUp.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                switch (event.getAction()) {
+//                    case MotionEvent.ACTION_DOWN:
+//                        //按下的时候加速
+//                        speedControlView.setType(1);
+//                        break;
+//                    case MotionEvent.ACTION_UP:
+//                        //松开做自然减速
+//                        speedControlView.setType(0);
+//                        break;
+//                        default:
+//                            break;
+//                }
+//                return true;
+//            }
+//        });
+        speedUp.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        //按下的时候加速
-                        speedControlView.setType(1);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        //松开做自然减速
-                        speedControlView.setType(0);
-                        break;
-                        default:
-                            break;
+            public void onClick(View view) {
+                for (int i=0;i<list.size();i++)
+                {
+                    speedControlView.setSpeed((Integer) list.get(i));
+
                 }
-                return true;
             }
         });
         speedDown.setOnTouchListener(new View.OnTouchListener() {
@@ -91,6 +109,8 @@ public class SpeedContralActivity extends AppCompatActivity {
             speedControlView.setStart(true);
         }
         new Thread(speedControlView).start();
+
+
 
     }
 

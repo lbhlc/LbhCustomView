@@ -18,7 +18,7 @@ import android.view.View;
  * use for 速度展示view
  * 汽车仪表盘
  */
-public class SpeedControlView extends View implements Runnable {
+public class SpeedControlViewModify extends View  {
 
     //画笔
     private Paint mPaint, textPaint, speedAreaPaint;
@@ -61,19 +61,20 @@ public class SpeedControlView extends View implements Runnable {
     // 设置速度 并重绘视图
     public void setSpeed(int speed) {
         this.speed = speed;
-        postInvalidate();
+      postInvalidate();
+    //    invalidate();
     }
 
 
-    public SpeedControlView(Context context) {
+    public SpeedControlViewModify(Context context) {
         this(context, null);
     }
 
-    public SpeedControlView(Context context, AttributeSet attrs) {
+    public SpeedControlViewModify(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SpeedControlView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SpeedControlViewModify(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
 
@@ -283,41 +284,12 @@ public class SpeedControlView extends View implements Runnable {
 
         //单位
         textPaint.setTextSize(20 * mDensityDpi);
-        tw = textPaint.measureText("km/h");
+        tw = textPaint.measureText("kpa");
         baseX = (int) (pointX - tw / 2);
         baseY = (int) (pointY + raduis / 4 + Math.abs(textPaint.descent() + textPaint.ascent()) / 4);
-        canvas.drawText("km/h", baseX, baseY, textPaint);
+        canvas.drawText("kpa", baseX, baseY, textPaint);
     }
 
 
-    @Override
-    public void run() {
-        int speedChange;
-        while (start) {
-            switch (type) {
-                case 1://油门
-                    speedChange = 3;
-                    break;
-                case 2://刹车
-                    speedChange = -5;
-                    break;
-                case 3://手刹
-                    speed = 0;
-                default:
-                    speedChange = -1;
-                    break;
-            }
-            speed += speedChange;
-            if (speed < 1) {
-                speed = 0;
-            }
-            try {
-                Thread.sleep(50);
-                setSpeed(speed);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                break;
-            }
-        }
-    }
+
 }

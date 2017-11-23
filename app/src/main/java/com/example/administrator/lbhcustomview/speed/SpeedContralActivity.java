@@ -2,19 +2,21 @@ package com.example.administrator.lbhcustomview.speed;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.administrator.lbhcustomview.R;
 import com.example.lbhlibrary.customview.speedcontroal.SpeedControlView;
+import com.example.lbhlibrary.customview.speedcontroal.SpeedControlViewModify;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SpeedContralActivity extends AppCompatActivity {
 
-    private SpeedControlView speedControlView;
+    private SpeedControlViewModify speedControlView;
     private Button speedUp; //油门
     private Button speedDown;//刹车
     private Button shutDown; //手刹
@@ -23,17 +25,18 @@ public class SpeedContralActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speed_contral);
-        speedControlView = (SpeedControlView) findViewById(R.id.speed_control);
+        speedControlView = (SpeedControlViewModify) findViewById(R.id.speed_control);
 
         //实体化
         speedUp = (Button) findViewById(R.id.speed_up);
         speedDown = (Button) findViewById(R.id.speed_down);
         shutDown = (Button) findViewById(R.id.shut_down);
-        for (int i=0;i<6;i++)
-        {
-            list.add(i*30);
-        }
-
+            list.add(30);
+            list.add(120);
+        list.add(90);
+        list.add(160);
+        list.add(200);
+        list.add(50);
         //设置监听
 //        speedUp.setOnTouchListener(new View.OnTouchListener() {
 //            @Override
@@ -56,11 +59,22 @@ public class SpeedContralActivity extends AppCompatActivity {
         speedUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (int i=0;i<list.size();i++)
-                {
-                    speedControlView.setSpeed((Integer) list.get(i));
+                new Thread(){
+                    @Override
+                    public void run() {
+                        for (int i=0;i<list.size();i++)
+                        {
+                            Log.e("LBH","value="+(Integer) list.get(i));
+                            speedControlView.setSpeed((Integer) list.get(i));
+                            try {
+                                Thread.sleep(500);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }.start();
 
-                }
             }
         });
         speedDown.setOnTouchListener(new View.OnTouchListener() {
@@ -106,9 +120,9 @@ public class SpeedContralActivity extends AppCompatActivity {
         super.onResume();
         if (speedControlView != null) {
             speedControlView.setSpeed(0);
-            speedControlView.setStart(true);
+          //  speedControlView.setStart(true);
         }
-        new Thread(speedControlView).start();
+//        new Thread(speedControlView).start();
 
 
 
@@ -119,7 +133,7 @@ public class SpeedContralActivity extends AppCompatActivity {
         super.onStop();
         if (speedControlView != null) {
             speedControlView.setSpeed(0);
-            speedControlView.setStart(false);
+           // speedControlView.setStart(false);
         }
     }
 }

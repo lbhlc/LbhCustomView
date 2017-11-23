@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.administrator.lbhcustomview.speed.SpeedContralActivity"
     android:orientation="vertical">
-    <com.example.lbhlibrary.customview.speedcontroal.SpeedControlView
+    <com.example.lbhlibrary.customview.speedcontroal.SpeedControlViewModify
         android:id="@+id/speed_control"
         android:layout_width="wrap_content"
         android:layout_height="0dp"

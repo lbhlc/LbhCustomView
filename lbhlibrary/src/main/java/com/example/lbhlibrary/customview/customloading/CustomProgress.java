@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -18,17 +17,16 @@ import com.example.lbhlibrary.R;
  * @author libohan
  *         邮箱:76681287@qq.com
  *         create on 2017/12/7.
+ *         仿ios的loading框
  */
 
-/**
- * 仿ios的loading框
- */
+
 public class CustomProgress extends Dialog {
     public CustomProgress(@NonNull Context context) {
         super(context);
     }
 
-    public CustomProgress(@NonNull Context context, int themeResId) {
+    private CustomProgress(@NonNull Context context, int themeResId) {
         super(context, themeResId);
     }
     @Override
@@ -42,7 +40,7 @@ public class CustomProgress extends Dialog {
     /**
      * 给Dialog设置提示信息
      *
-     * @param message
+     * @param message 设置的文字信息
      */
     public void setMessage(CharSequence message) {
         if (message != null && message.length() > 0) {
@@ -63,7 +61,7 @@ public class CustomProgress extends Dialog {
      *            是否按返回键取消
      * @param cancelListener
      *            按下返回键监听
-     * @return
+     * @return 返回一个customprogress对象
      */
     public static CustomProgress show(Context context, CharSequence message, boolean cancelable, OnCancelListener cancelListener) {
         CustomProgress dialog = new CustomProgress(context,R.style.Custom_Progress);
@@ -80,6 +78,10 @@ public class CustomProgress extends Dialog {
     // 监听返回键处理
         dialog.setOnCancelListener(cancelListener);
     // 设置居中
+        if (dialog.getWindow()==null)
+        {
+            return null;
+        }
         dialog.getWindow().getAttributes().gravity = Gravity.CENTER;
     WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
     // 设置背景层透明度

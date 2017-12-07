@@ -280,6 +280,13 @@ public class SpeedControlViewModify extends View  {
         float tw = textPaint.measureText(String.valueOf(speed));
         baseX = (int) (pointX - tw / 2);
         baseY = (int) (pointY + Math.abs(textPaint.descent() + textPaint.ascent()) / 4);
+        if (speed>=300)
+        {
+            textPaint.setColor(Color.RED);
+        }else
+        {
+            textPaint.setColor(Color.WHITE);
+        }
         canvas.drawText(String.valueOf(speed), baseX, baseY, textPaint);
 
         //单位
@@ -289,7 +296,10 @@ public class SpeedControlViewModify extends View  {
         baseY = (int) (pointY + raduis / 4 + Math.abs(textPaint.descent() + textPaint.ascent()) / 4);
         canvas.drawText("kpa", baseX, baseY, textPaint);
     }
-
+    public void setTextColor(int color)
+    {
+        textPaint.setColor(color);
+    }
 
 
 }

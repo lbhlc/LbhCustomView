@@ -1,5 +1,6 @@
 package com.example.administrator.lbhcustomview.speed;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,12 +32,12 @@ public class SpeedContralActivity extends AppCompatActivity {
         speedUp = (Button) findViewById(R.id.speed_up);
         speedDown = (Button) findViewById(R.id.speed_down);
         shutDown = (Button) findViewById(R.id.shut_down);
-            list.add(30);
-            list.add(120);
+            list.add(11);
+            list.add(19);
         list.add(90);
-        list.add(160);
-        list.add(200);
-        list.add(50);
+        list.add(23);
+        list.add(300);
+        list.add(350);
         //设置监听
 //        speedUp.setOnTouchListener(new View.OnTouchListener() {
 //            @Override
@@ -59,6 +60,7 @@ public class SpeedContralActivity extends AppCompatActivity {
         speedUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                speedControlView.setTextColor(Color.WHITE);
                 new Thread(){
                     @Override
                     public void run() {

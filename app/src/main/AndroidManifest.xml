@@ -31,7 +31,8 @@
             android:theme="@style/AppTheme.Detail" />
         <activity android:name="com.example.administrator.CATransition.manual_transition.AnimeActivity" />
         <activity android:name="com.example.administrator.CATransition.manual_transition.AnimeDetailActivity" />
-        <activity android:name=".InstrumentPanel.InstrumentPanelActivity"></activity>
+        <activity android:name=".InstrumentPanel.InstrumentPanelActivity" />
+        <activity android:name=".passwordview.PassWordActivity"></activity>
     </application>
 
 </manifest>

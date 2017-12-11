@@ -1,5 +1,4 @@
 package com.example.lbhlibrary.customview.customloading;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
@@ -9,23 +8,17 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.lbhlibrary.R;
-
-
 /**
  * @author libohan
  *         邮箱:76681287@qq.com
  *         create on 2017/12/7.
  *         仿ios的loading框
  */
-
-
 public class CustomProgress extends Dialog {
     public CustomProgress(@NonNull Context context) {
         super(context);
     }
-
     private CustomProgress(@NonNull Context context, int themeResId) {
         super(context, themeResId);
     }

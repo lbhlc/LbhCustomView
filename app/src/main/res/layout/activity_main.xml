@@ -49,6 +49,12 @@
         android:id="@+id/instrumentpanel_activity"
         android:text="跳转到自定义仪表盘"
         />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/passwordview_activity"
+        android:text="自定义密码输入框"
+        />
 
 </LinearLayout>
 

@@ -12,6 +12,7 @@ import com.example.administrator.lbhcustomview.auditprogress.AuditProgressActivi
 import com.example.administrator.lbhcustomview.bomb.BombActivity;
 import com.example.administrator.lbhcustomview.dragviewactivity.DragMainActivity;
 import com.example.administrator.lbhcustomview.dropindicator.DropindicatorActivity;
+import com.example.administrator.lbhcustomview.passwordview.PassWordActivity;
 import com.example.administrator.lbhcustomview.speed.SpeedContralActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -44,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 跳转到自定义仪表盘
      */
     private Button mInstrumentpanelActivity;
+    /**
+     * 自定义密码输入框
+     */
+    private Button mPasswordviewActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTransitionActivity.setOnClickListener(this);
         mInstrumentpanelActivity = (Button) findViewById(R.id.instrumentpanel_activity);
         mInstrumentpanelActivity.setOnClickListener(this);
+        mPasswordviewActivity = (Button) findViewById(R.id.passwordview_activity);
+        mPasswordviewActivity.setOnClickListener(this);
     }
 
     @Override
@@ -97,6 +104,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.instrumentpanel_activity:
                 startActivity(new Intent(this, InstrumentPanelActivity.class));
+                break;
+            case R.id.passwordview_activity:
+                startActivity(new Intent(this, PassWordActivity.class));
                 break;
         }
     }

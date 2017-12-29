@@ -14,6 +14,7 @@ import com.example.administrator.lbhcustomview.dragviewactivity.DragMainActivity
 import com.example.administrator.lbhcustomview.dropindicator.DropindicatorActivity;
 import com.example.administrator.lbhcustomview.passwordview.PassWordActivity;
 import com.example.administrator.lbhcustomview.speed.SpeedContralActivity;
+import com.example.administrator.lbhcustomview.temperature.TemperatureActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -49,6 +50,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 自定义密码输入框
      */
     private Button mPasswordviewActivity;
+    /**
+     * 温度计自定义view
+     */
+    private Button mTemperatureviewActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +80,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mInstrumentpanelActivity.setOnClickListener(this);
         mPasswordviewActivity = (Button) findViewById(R.id.passwordview_activity);
         mPasswordviewActivity.setOnClickListener(this);
+        mTemperatureviewActivity = (Button) findViewById(R.id.temperatureview_activity);
+        mTemperatureviewActivity.setOnClickListener(this);
     }
 
     @Override
@@ -107,6 +114,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.passwordview_activity:
                 startActivity(new Intent(this, PassWordActivity.class));
+                break;
+            case R.id.temperatureview_activity:
+                startActivity(new Intent(this, TemperatureActivity.class));
                 break;
         }
     }

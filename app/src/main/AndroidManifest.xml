@@ -10,7 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".auditprogress.AuditProgressActivity" />
         <activity android:name=".bomb.BombActivity" />
@@ -30,11 +34,7 @@
         <activity android:name=".InstrumentPanel.InstrumentPanelActivity" />
         <activity android:name=".passwordview.PassWordActivity" />
         <activity android:name=".temperature.TemperatureActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

@@ -19,13 +19,11 @@ import com.example.lbhlibrary.R;
 
 /**
  * Created by lbh on 2017/12/29.
+ * 温度计的自定义view
  */
 
 public class TemperatureView extends View {
 
-    private float mWidth;
-    private float mHeight;
-    private float mMin;
     private Paint[] mPaints;
     private int mBackgroundColor;
     private int mThermometerColor;
@@ -67,9 +65,9 @@ public class TemperatureView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        mWidth = getWidth();
-        mHeight = getHeight();
-        mMin = mHeight / 10;
+        float mWidth = getWidth();
+        float mHeight = getHeight();
+        float mMin = mHeight / 10;
         oval.set(mWidth / 2 - mMin * 0.75f, mMin * 8, mWidth / 2 + mMin * 0.75f,  mMin * 9.5f);
 
         // 绘制背景
@@ -77,7 +75,7 @@ public class TemperatureView extends View {
         mPaints[0].setAntiAlias(true);
         mPaints[0].setStrokeCap(Paint.Cap.ROUND);
         mPaints[0].setStrokeWidth(mMin / 2);
-        canvas.drawLine(mWidth / 2, mMin * 0.5f, mWidth/ 2, mMin * 8.5f, mPaints[0]);
+        canvas.drawLine(mWidth / 2, mMin * 0.5f, mWidth / 2, mMin * 8.5f, mPaints[0]);
         // 绘制底部圆
         mPaints[0].setColor(mThermometerColor);
         canvas.drawArc(oval, 0, 360, false, mPaints[0]);
@@ -100,16 +98,12 @@ public class TemperatureView extends View {
         if (mProgress != 0f) {
             mPaints[0].setColor(mThermometerColor);
             mPaints[0].setStrokeCap(Paint.Cap.BUTT);
-            canvas.drawLine(mWidth / 2, mMin * 8.5f, mWidth/ 2, mMin * (7.5f - 7 * mProgress / 140), mPaints[0]);
+            canvas.drawLine(mWidth / 2, mMin * 8.5f, mWidth / 2, mMin * (7.5f - 7 * mProgress / 140), mPaints[0]);
         }
 
     }
 
-    public float getProgress() {
-        return mProgress;
-    }
-
-    public void setProgress(float progress) {
+    private void setProgress(float progress) {
         this.mProgress = progress;
         invalidate();
     }

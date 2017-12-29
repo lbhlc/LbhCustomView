@@ -55,6 +55,12 @@
         android:id="@+id/passwordview_activity"
         android:text="自定义密码输入框"
         />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/temperatureview_activity"
+        android:text="温度计自定义view"
+        />
 
 </LinearLayout>
 

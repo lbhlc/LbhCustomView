@@ -10,6 +10,9 @@ import android.os.Bundle;
 import com.example.administrator.lbhcustomview.R;
 import com.example.lbhlibrary.customview.xiaomi.ChaosCompassView;
 
+/**
+ * 自定义指南针页面
+ */
 public class CompassActivity extends AppCompatActivity {
 
     private SensorManager mSensorManager;

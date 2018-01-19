@@ -6,6 +6,9 @@ import android.os.Bundle;
 import com.example.administrator.lbhcustomview.R;
 import com.example.lbhlibrary.customview.xiaomi.BarUtils;
 
+/**
+ * 自定义钟表页面
+ */
 public class ClockActivity extends AppCompatActivity {
 
     @Override

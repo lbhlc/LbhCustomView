@@ -15,6 +15,8 @@ import com.example.administrator.lbhcustomview.dropindicator.DropindicatorActivi
 import com.example.administrator.lbhcustomview.passwordview.PassWordActivity;
 import com.example.administrator.lbhcustomview.speed.SpeedContralActivity;
 import com.example.administrator.lbhcustomview.temperature.TemperatureActivity;
+import com.example.administrator.lbhcustomview.xiaomi.ClockActivity;
+import com.example.administrator.lbhcustomview.xiaomi.CompassActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -54,6 +56,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 温度计自定义view
      */
     private Button mTemperatureviewActivity;
+    /**
+     * 自定义钟表view
+     */
+    private Button mClockviewActivity;
+    /**
+     * 自定义指南针view
+     */
+    private Button mCompassviewActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +92,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mPasswordviewActivity.setOnClickListener(this);
         mTemperatureviewActivity = (Button) findViewById(R.id.temperatureview_activity);
         mTemperatureviewActivity.setOnClickListener(this);
+        mClockviewActivity = (Button) findViewById(R.id.clockview_activity);
+        mClockviewActivity.setOnClickListener(this);
+        mCompassviewActivity = (Button) findViewById(R.id.compassview_activity);
+        mCompassviewActivity.setOnClickListener(this);
     }
 
     @Override
@@ -117,6 +131,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.temperatureview_activity:
                 startActivity(new Intent(this, TemperatureActivity.class));
+                break;
+            case R.id.clockview_activity:
+                startActivity(new Intent(this, ClockActivity.class));
+                break;
+            case R.id.compassview_activity:
+                startActivity(new Intent(this, CompassActivity.class));
                 break;
         }
     }

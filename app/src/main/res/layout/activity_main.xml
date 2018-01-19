@@ -61,6 +61,18 @@
         android:id="@+id/temperatureview_activity"
         android:text="温度计自定义view"
         />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/clockview_activity"
+        android:text="自定义钟表view"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/compassview_activity"
+        android:text="自定义指南针view"
+        />
 
 </LinearLayout>
 

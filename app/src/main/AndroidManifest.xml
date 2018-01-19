@@ -33,9 +33,9 @@
         <activity android:name="com.example.administrator.CATransition.manual_transition.AnimeDetailActivity" />
         <activity android:name=".InstrumentPanel.InstrumentPanelActivity" />
         <activity android:name=".passwordview.PassWordActivity" />
-        <activity android:name=".temperature.TemperatureActivity">
-
-        </activity>
+        <activity android:name=".temperature.TemperatureActivity" />
+        <activity android:name=".xiaomi.CompassActivity" />
+        <activity android:name=".xiaomi.ClockActivity"></activity>
     </application>
 
 </manifest>

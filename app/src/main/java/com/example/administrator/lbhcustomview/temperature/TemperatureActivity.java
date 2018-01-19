@@ -17,7 +17,7 @@ public class TemperatureActivity extends AppCompatActivity {
         setContentView(R.layout.activity_temperature);
         temperatureView = (TemperatureView) findViewById(R.id.temperatureView);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
-        temperatureView.start(-20);
+        temperatureView.start(40);
        // seekBar.setProgress(80 + 40);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

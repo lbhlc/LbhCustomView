@@ -15,6 +15,7 @@ import com.example.administrator.lbhcustomview.dropindicator.DropindicatorActivi
 import com.example.administrator.lbhcustomview.passwordview.PassWordActivity;
 import com.example.administrator.lbhcustomview.speed.SpeedContralActivity;
 import com.example.administrator.lbhcustomview.temperature.TemperatureActivity;
+import com.example.administrator.lbhcustomview.thermometer.ThermometerActivity;
 import com.example.administrator.lbhcustomview.xiaomi.ClockActivity;
 import com.example.administrator.lbhcustomview.xiaomi.CompassActivity;
 
@@ -65,6 +66,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private Button mCompassviewActivity;
 
+    /**
+     *
+     * 自定义测试view
+     */
+
+    private Button mThermometerActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +103,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mClockviewActivity.setOnClickListener(this);
         mCompassviewActivity = (Button) findViewById(R.id.compassview_activity);
         mCompassviewActivity.setOnClickListener(this);
+        mThermometerActivity=(Button)findViewById(R.id.thermometerTest_activity);
+        mThermometerActivity.setOnClickListener(this);
     }
 
     @Override
@@ -138,6 +147,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.compassview_activity:
                 startActivity(new Intent(this, CompassActivity.class));
                 break;
+            case R.id.thermometerTest_activity:
+                startActivity(new Intent(this, ThermometerActivity.class));
+                break;
+
         }
     }
 }

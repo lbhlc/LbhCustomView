@@ -35,7 +35,8 @@
         <activity android:name=".passwordview.PassWordActivity" />
         <activity android:name=".temperature.TemperatureActivity" />
         <activity android:name=".xiaomi.CompassActivity" />
-        <activity android:name=".xiaomi.ClockActivity"></activity>
+        <activity android:name=".xiaomi.ClockActivity" />
+        <activity android:name="com.example.administrator.humidityView.HumidityActivity"></activity>
     </application>
 
 </manifest>

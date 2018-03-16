@@ -29,7 +29,7 @@ public class TemperatureView extends View {
     private int mThermometerColor;
     private RectF oval;
     private Scroller mScroller;
-    private String[] mNumber = {"60", "40", "20", "0", "-20", "-40","-60"};
+    private String[] mNumber = {"80","60", "40", "20", "0", "-20", "-40"};
     private float mProgress;
     private int mValueColor = Color.RED;
     private float mValueSize = 36;
@@ -90,7 +90,7 @@ public class TemperatureView extends View {
 
         Rect rect = new Rect();
         mPaints[1].getTextBounds(mNumber[6], 0, mNumber[6].length(), rect);
-        for (int i = 1; i < 8; i++) {
+        for (int i = 1; i <8; i++) {
             canvas.drawLine(mWidth / 2 + mMin / 4, mMin * (i + 0.5f), mWidth / 2 + mMin / 2, mMin * (i + 0.5f), mPaints[1]);
             canvas.drawText(mNumber[i-1], mWidth / 2 + mMin / 2 + rect.width() / 3 * 2, mMin * (i + 0.5f) + rect.height() / 2, mPaints[1]);
         }
@@ -109,7 +109,7 @@ public class TemperatureView extends View {
     }
 
     public void start(float progress) {
-        setProgress(progress + 60);
+        setProgress(progress + 40);
         AnimatorSet animation = new AnimatorSet();
         ObjectAnimator progressAnimation = ObjectAnimator.ofFloat(this, "progress", 0f, mProgress);
         progressAnimation.setDuration(3000);// 动画执行时间

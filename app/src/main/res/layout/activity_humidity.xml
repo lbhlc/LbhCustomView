@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.administrator.lbhcustomview.temperature.TemperatureActivity">
-    <com.example.lbhlibrary.customview.temperature.TemperatureView
-        android:layout_centerInParent="true"
-        android:id="@+id/temperatureView"
-        android:layout_width="100dp"
+    android:background="@color/colorPrimary"
+    android:padding="20dp"
+    tools:context="com.example.administrator.humidityView.HumidityActivity">
+    <com.example.lbhlibrary.customview.humidity.Humidity
+        android:layout_width="200dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
+        android:background="@color/colorAccent"
         />
-
 
 </LinearLayout>

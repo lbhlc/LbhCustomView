@@ -109,6 +109,7 @@ public class TemperatureView extends View {
     }
 
     public void start(float progress) {
+        //3.16
         setProgress(progress + 40);
         AnimatorSet animation = new AnimatorSet();
         ObjectAnimator progressAnimation = ObjectAnimator.ofFloat(this, "progress", 0f, mProgress);

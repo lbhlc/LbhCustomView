@@ -1,7 +1,4 @@
 package com.example.lbhlibrary.customview.temperature;
-
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,9 +8,8 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
+
 
 /**
  * @author libohan
@@ -81,12 +77,12 @@ public class ThermometerView extends View {
     private void initView() {
         paint=new Paint();
         //设置画笔颜色
-        paint.setColor(Color.BLUE);
+        paint.setColor(Color.parseColor("#FF00FF"));
         //设置画笔抗锯齿
         paint.setAntiAlias(true);
         //让画出的图形是空心的(不填充)
         paint.setStyle(Paint.Style.STROKE);
-        rect=new Rect(200,0,300,550);
+        rect=new Rect(200,0,400,770);
 
     }
 
@@ -98,7 +94,7 @@ public class ThermometerView extends View {
     private void initFilledRectangle()
     {
         fRPaint=new Paint();
-        fRPaint.setColor(Color.RED);
+        fRPaint.setColor(Color.parseColor("#D2691E"));
         fRPaint.setAntiAlias(true);
         fRPaint.setStyle(Paint.Style.FILL);
 
@@ -120,7 +116,7 @@ public class ThermometerView extends View {
         int height=MeasureSpec.getSize(heightMeasureSpec);
         int width=MeasureSpec.getSize(widthMeasureSpec);
         int len=Math.min(height,width);
-        setMeasuredDimension(len,len);
+        setMeasuredDimension(700,1000);
     }
     @Override
     protected void onDraw(Canvas canvas) {
@@ -130,8 +126,7 @@ public class ThermometerView extends View {
             drawLine(canvas);
             drawFRect(canvas);
             canvas.save();
-            canvas.drawLine(200, 400-mProgress, 300, 400-mProgress, linePaint);
-            Log.e("LBH","mprogressY="+(400-mProgress));
+            canvas.drawLine(200, 560-mProgress, 400, 560-mProgress, linePaint);
             canvas.restore();
 
 
@@ -163,7 +158,8 @@ public class ThermometerView extends View {
      */
     private void initLinePaint() {
         linePaint=new Paint();
-        linePaint.setColor(Color.BLACK);
+        linePaint.setTextSize(30f);
+        linePaint.setColor(Color.parseColor("#FFD700"));
         linePaint.setAntiAlias(true);
         linePaint.setStyle(Paint.Style.STROKE);
     }
@@ -178,11 +174,11 @@ public class ThermometerView extends View {
         {
             if (i%5==0) {
 
-                canvas.drawLine(300, i * 5, 350, i * 5, linePaint);
-                canvas.drawText(((110-i)*2)-60+"",350,i*5,linePaint);
+                canvas.drawLine(400, i * 7, 450, i * 7, linePaint);
+                canvas.drawText(((110-i)*2)-60+"",450,i*7,linePaint);
             }else
             {
-                canvas.drawLine(300, i * 5, 320, i * 5, linePaint);
+                canvas.drawLine(400, i * 7, 420, i * 7, linePaint);
             }
         }
         canvas.restore();
@@ -191,10 +187,10 @@ public class ThermometerView extends View {
      * 定义圆弧画笔
      */
     private void initCiclePaint() {
-        rectF=new RectF(200,500,300,600);
+        rectF=new RectF(200,670,400,870);
         ciclePaint=new Paint();
         //设置画笔颜色
-        ciclePaint.setColor(Color.RED);
+        ciclePaint.setColor(Color.parseColor("#D2691E"));
         //设置画笔抗锯齿
         ciclePaint.setAntiAlias(true);
         //让画出的图形是实心的(填充)
@@ -204,8 +200,9 @@ public class ThermometerView extends View {
     private void setProgress(float progress) {
         this.mProgress = progress;
         postInvalidate();
-        frY= (int) (400-this.mProgress);
-        fRect=new Rect(200,frY,300,550);
+        frY= (int) (560-this.mProgress);
+        //动态绘制
+        fRect=new Rect(200,frY,400,770);
     }
     float value=0;
     /**
@@ -220,12 +217,20 @@ public class ThermometerView extends View {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
                 value= (float) valueAnimator.getAnimatedValue();
-                Log.e("LBH","value="+value);
+                //在子线程中绘制保证主线程不会被阻塞
                 new Thread()
                 {
                     @Override
                     public void run() {
-                        setProgress(value*25);
+                        setProgress(value*49);
+//                        try {
+//                            Thread.sleep(4000);
+//                            setProgress(300);
+//                            Thread.sleep(4000);
+//                            setProgress(75);
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
                     }
                 }.start();
 

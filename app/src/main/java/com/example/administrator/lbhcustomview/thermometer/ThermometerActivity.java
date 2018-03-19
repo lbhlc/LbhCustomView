@@ -13,6 +13,6 @@ public class ThermometerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thermometer);
         thermometerView=(ThermometerView)findViewById(R.id.thermommeter);
-        thermometerView.start(55f/10f);
+        thermometerView.start(-50f/14f);
     }
 }

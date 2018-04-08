@@ -8,6 +8,8 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 
 
@@ -65,41 +67,94 @@ public class ThermometerView extends View {
      *
      * 右侧坐标
      */
-    private final  int right=300;
+    private   int right;
+
+    /**
+     *
+     * 屏幕高度取值
+     */
+    private int heightS;
+    /**
+     * 自定义view宽度的一半
+     */
+    private int widthS;
+
+    /**
+     *
+     * 下圆的半径
+     */
+    private int radius;
+
+    /**
+     *
+     * 缓冲矩形的高的差值
+     */
+    private int heightDifValue;
+    /**
+     * 中间动态画笔
+     */
+    private Paint lineMidPaint;
+
     public ThermometerView(Context context) {
         super(context);
     }
 
     public ThermometerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        getWidthAndHeight();
         initView();
         initCiclePaint();
         initLinePaint();
         initFilledRectangle();
         initFillRect();
+        initMidLinePaint();
 
     }
 
     /**
+     * 获取屏幕高和宽
+     */
+    private void getWidthAndHeight()
+    {
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        /*
+      屏幕宽度
+     */
+        int screenWidth = displayMetrics.widthPixels;
+        /*
+      屏幕高度
+     */
+        int screenHeight = displayMetrics.heightPixels;
+        right= screenWidth /2;
+        heightS=4* screenHeight /5;
+        widthS= screenWidth /28;
+        radius= screenWidth /10;
+        heightDifValue= screenWidth /14;
+    }
+    /**
      * 初始化填充矩形
      */
     private void initFillRect() {
-        rectFill=new Rect(200,770,right,820);
+        rectFill=new Rect(right-widthS, (int) (heightS*4/5-((2f)*heightS/550)),right+widthS,heightS*4/5+heightDifValue);
     }
 
 
     public ThermometerView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
+
+    /**
+     * 定义矩形画笔
+     */
     private void initView() {
         paint=new Paint();
         //设置画笔颜色
-        paint.setColor(Color.parseColor("#FF00FF"));
+        paint.setColor(Color.parseColor("#B0C4DE"));
         //设置画笔抗锯齿
         paint.setAntiAlias(true);
         //让画出的图形是空心的(不填充)
-        paint.setStyle(Paint.Style.STROKE);
-        rect=new Rect(200,0,right,770);
+        paint.setStyle(Paint.Style.FILL);
+        rect=new Rect(right-widthS,0,right+widthS,heightS*4/5);
 
     }
 
@@ -108,10 +163,15 @@ public class ThermometerView extends View {
      */
     private Paint fRPaint;
     private Rect fRect;
+
+    /**
+     * 定义动态矩形画笔
+     */
     private void initFilledRectangle()
     {
         fRPaint=new Paint();
-        fRPaint.setColor(Color.parseColor("#D2691E"));
+       //fRPaint.setColor(Color.parseColor("#D2691E"));
+        fRPaint.setColor(Color.RED);
         fRPaint.setAntiAlias(true);
         fRPaint.setStyle(Paint.Style.FILL);
 
@@ -132,8 +192,8 @@ public class ThermometerView extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int height=MeasureSpec.getSize(heightMeasureSpec);
         int width=MeasureSpec.getSize(widthMeasureSpec);
-        int len=Math.min(height,width);
-        setMeasuredDimension(700,1200);
+        int len=Math.max(height,width);
+        setMeasuredDimension(heightS*4/5, len);
     }
     @Override
     protected void onDraw(Canvas canvas) {
@@ -144,7 +204,7 @@ public class ThermometerView extends View {
             drawFRect(canvas);
             drawFillRect(canvas);
             canvas.save();
-            canvas.drawLine(200, 560-mProgress, right, 560-mProgress, linePaint);
+            canvas.drawLine(right-widthS, 32*heightS/55-mProgress-((2f)*heightS/550), right+widthS, 32*heightS/55-mProgress-((2f)*heightS/550), lineMidPaint);
             canvas.restore();
 
 
@@ -185,9 +245,20 @@ public class ThermometerView extends View {
     private void initLinePaint() {
         linePaint=new Paint();
         linePaint.setTextSize(30f);
-        linePaint.setColor(Color.parseColor("#FFD700"));
+        linePaint.setColor(Color.parseColor("#D2691E"));
         linePaint.setAntiAlias(true);
         linePaint.setStyle(Paint.Style.STROKE);
+    }
+
+    /**
+     * 定义中间动态画笔
+     */
+    private void initMidLinePaint() {
+        lineMidPaint=new Paint();
+        lineMidPaint.setColor(Color.parseColor("#FFD700"));
+        lineMidPaint.setStrokeWidth(6f);
+        lineMidPaint.setAntiAlias(true);
+        lineMidPaint.setStyle(Paint.Style.STROKE);
     }
     /**
      * 画线
@@ -200,11 +271,12 @@ public class ThermometerView extends View {
         {
             if (i%5==0) {
 
-                canvas.drawLine(right, i * 7, right+50, i * 7, linePaint);
-                canvas.drawText(((110-i)*2)-60+"",right+50,i*7,linePaint);
+                canvas.drawLine(right+widthS, i * (4*heightS/550), right+(2*widthS), i * (4*heightS/550), linePaint);
+                canvas.drawText(((110-i)*2)-60+"",right+(2*widthS),i*(4*heightS/550),linePaint);
             }else
             {
-                canvas.drawLine(right, i * 7, right+20, i * 7, linePaint);
+                //canvas.drawLine(right+widthS, i * (4*heightS/550), right+widthS+widthS/2, i * (4*heightS/550), linePaint);
+                Log.e("LBH","绘制短线的方法");
             }
         }
         canvas.restore();
@@ -213,10 +285,11 @@ public class ThermometerView extends View {
      * 定义圆弧画笔
      */
     private void initCiclePaint() {
-        rectF=new RectF(150,780,right+50,930);
+        rectF=new RectF(right-radius,4*heightS/5+heightDifValue-radius/4,right+radius,4*heightS/5+radius*5/4+heightDifValue);
         ciclePaint=new Paint();
         //设置画笔颜色
-        ciclePaint.setColor(Color.parseColor("#D2691E"));
+        //ciclePaint.setColor(Color.parseColor("#D2691E"));
+        ciclePaint.setColor(Color.RED);
         //设置画笔抗锯齿
         ciclePaint.setAntiAlias(true);
         //让画出的图形是实心的(填充)
@@ -226,14 +299,12 @@ public class ThermometerView extends View {
     private void setProgress(float progress) {
         this.mProgress = progress;
         postInvalidate();
-        frY= (int) (560-this.mProgress);
+        frY= (int) (32*heightS/55-this.mProgress);
         //动态绘制
-        fRect=new Rect(200,frY,right,770);
+        fRect=new Rect(right-widthS,frY,right+widthS,4*heightS/5);
     }
     float value=0;
     /**
-     *
-     *
      * @param progress 进度
      */
     public void start(float progress) {
@@ -248,7 +319,10 @@ public class ThermometerView extends View {
                 {
                     @Override
                     public void run() {
-                        setProgress(value*49);
+                        setProgress(value*(4*heightS/550)*(4*heightS/550));
+                        Log.e("LBH","value1="+value*(4*heightS/550)*(4*heightS/550));
+                        Log.e("LBH","value2="+value*49);
+                        Log.e("LBH","value3="+(4*heightS/550));
 //                        try {
 //                            Thread.sleep(4000);
 //                            setProgress(300);
@@ -259,7 +333,6 @@ public class ThermometerView extends View {
 //                        }
                     }
                 }.start();
-
             }
         });
         valueAnimator.start();

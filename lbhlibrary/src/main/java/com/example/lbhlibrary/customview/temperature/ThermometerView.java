@@ -335,7 +335,7 @@ public class ThermometerView extends View {
                 }.start();
             }
         });
-        valueAnimator.start();
+        valueAnimator.start();//
 
     }
 

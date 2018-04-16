@@ -113,7 +113,7 @@ public class SpeedControlView extends View implements Runnable {
         speedAreaPaint.setAntiAlias(true);
         //设置画笔样式
         speedAreaPaint.setStyle(Paint.Style.FILL);
-        // 设置速度范围扇形的渐变颜色
+        // 设置速度范围扇形的渐变颜色,改变坐标点没有影响
         Shader mShader = new LinearGradient(pointX - raduis, pointY, pointX + raduis, pointY,
                 new int[]{0xFF445EED, 0xFF072AE9, 0xFF0625CE}, null, Shader.TileMode.CLAMP);
         speedAreaPaint.setShader(mShader);
@@ -319,5 +319,9 @@ public class SpeedControlView extends View implements Runnable {
                 break;
             }
         }
+    }
+    public void setTextColor(int color)
+    {
+        textPaint.setColor(color);
     }
 }

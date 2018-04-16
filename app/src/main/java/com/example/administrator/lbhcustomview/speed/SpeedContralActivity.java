@@ -17,7 +17,7 @@ import java.util.List;
 
 public class SpeedContralActivity extends AppCompatActivity {
 
-    private SpeedControlViewModify speedControlView;
+    private SpeedControlView speedControlView;
     private Button speedUp; //油门
     private Button speedDown;//刹车
     private Button shutDown; //手刹
@@ -26,7 +26,7 @@ public class SpeedContralActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speed_contral);
-        speedControlView = (SpeedControlViewModify) findViewById(R.id.speed_control);
+        speedControlView = (SpeedControlView) findViewById(R.id.speed_control);
 
         //实体化
         speedUp = (Button) findViewById(R.id.speed_up);
